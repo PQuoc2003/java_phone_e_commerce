@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,7 +27,9 @@ public class User implements Serializable {
     @Column(nullable = false, unique = true)
     @NotEmpty
     private String email;
+
     private String userName;
+
     private String phoneNumber;
 
     @Column(nullable = false)
@@ -35,15 +37,6 @@ public class User implements Serializable {
     private String password;
 
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")}
-    )
-    private List<Role> roles;
-
-//    @OneToMany(mappedBy = "userOrder", cascade = CascadeType.ALL)
-//    private List<Order> orders;
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", address=" + address + ", email=" + email + "]";
