@@ -22,7 +22,12 @@ public class UserServiceImp implements UserService {
 
     @Override
     public List<User> findByUsername(String username) {
-        return null;
+        return userRepository.findByUserName(username);
 
+    }
+
+    @Override
+    public List<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

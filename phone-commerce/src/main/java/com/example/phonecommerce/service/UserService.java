@@ -8,5 +8,6 @@ public interface UserService{
 
     List<User> findByUsername(String username);
 
+    List<User> findByEmail(String email);
 
 }
