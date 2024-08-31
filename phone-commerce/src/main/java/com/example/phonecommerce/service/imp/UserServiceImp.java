@@ -14,14 +14,13 @@ public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
 
-
     @Autowired
     public UserServiceImp(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public List<User> findByUsername(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUserName(username);
 
     }
@@ -30,4 +29,11 @@ public class UserServiceImp implements UserService {
     public List<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
+
 }
