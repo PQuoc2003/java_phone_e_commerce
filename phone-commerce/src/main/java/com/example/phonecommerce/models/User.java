@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table
@@ -32,13 +31,8 @@ public class User implements Serializable {
 
     private String phoneNumber;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<Role> roles;
+    @Enumerated(EnumType.STRING)
+    private Roles roles;
 
     @Column(nullable = false)
     @NotEmpty

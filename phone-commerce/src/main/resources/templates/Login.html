@@ -18,8 +18,7 @@
     </div>
 
 
-
-    <!-- Form Đăng Nhập _________________________________________________________________________________ -->
+<!--    Login form-->
     <div class="inner-box">
       <div class="forms-wrap">
         <form th:action="@{/PerformLogin}" autocomplete="off" class="sign-in-form" method="post">
@@ -31,7 +30,7 @@
             <h6>Đăng Kí Tài Khoản</h6>
             <a th:href="@{/Register}">
               <button type="button" class="toggle" >
-                <h6>Đăng Ký</h6>
+                <h6>Đăng Kí</h6>
               </button>
             </a>
           </div>
@@ -45,7 +44,7 @@
 
             <div class="input-wrap">
               <input  type="password" name="password" minlength="4" class="input-field" autocomplete="off" required placeholder="Password" id="passwordField"/>
-              <button type="button" onclick="togglePasswordVisibility()" class="round-button"><img th:src="@{/Login_SiginUp_img/eye.svg}"></button>
+              <button type="button" onclick="togglePasswordVisibility()" class="round-button"><img th:src="@{/login_img/eye.svg}" alt="Welcome to my shop"></button>
             </div>
             <input type="checkbox" name="same" checked="checked" value="Remember me">Remember me
             <br>
