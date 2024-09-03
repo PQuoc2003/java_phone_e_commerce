@@ -3,8 +3,10 @@ package com.example.phonecommerce.controller;
 import com.example.phonecommerce.models.Roles;
 import com.example.phonecommerce.models.User;
 import com.example.phonecommerce.service.UserService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
 @Controller
+@AllArgsConstructor
 public class AuthController {
 
 
     private final UserService userService;
 
-    @Autowired
-    public AuthController(UserService userService) {
-        this.userService = userService;
-    }
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @GetMapping(value = {"/", "/login"})
