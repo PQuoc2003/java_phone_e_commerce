@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PhuQuoc-Shop</title>
-  <link rel="stylesheet" th:href="@{Login.css}" />
+  <link rel="stylesheet" th:href="@{/css/Login.css}" />
 
 </head>
 
@@ -44,7 +44,7 @@
 
             <div class="input-wrap">
               <input  type="password" name="password" minlength="4" class="input-field" autocomplete="off" required placeholder="Password" id="passwordField"/>
-              <button type="button" onclick="togglePasswordVisibility()" class="round-button"><img th:src="@{/login_img/eye.svg}" alt="Welcome to my shop"></button>
+              <button type="button" onclick="togglePasswordVisibility()" class="round-button"><img th:src="@{/image/login_img/eye.svg}" alt="Welcome to my shop"></button>
             </div>
             <input type="checkbox" name="same" checked="checked" value="Remember me">Remember me
             <br>
@@ -59,14 +59,14 @@
       </div>
       <div class="carousel">
         <div class="images-wrapper">
-          <img th:src="@{/login_img/login.png}" class="image img-1 show" alt="" />
+          <img th:src="@{/image/login_img/login.png}" class="image img-1 show" alt="" />
         </div>
       </div>
     </div>
   </div>
 </main>
 
-<script th:src="@{/Login.js}"></script>
+<script th:src="@{/javascript/Login.js}"></script>
 </body>
 
 </html>
