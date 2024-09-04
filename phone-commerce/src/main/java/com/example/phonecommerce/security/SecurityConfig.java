@@ -1,19 +1,22 @@
 package com.example.phonecommerce.security;
 
 
+import com.example.phonecommerce.models.Roles;
 import com.example.phonecommerce.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -38,31 +41,50 @@ public class SecurityConfig {
     }
 
 
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(customUserDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }
-
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder
+                = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder
+                .userDetailsService(customUserDetailsService())
+                .passwordEncoder(passwordEncoder());
+
+        AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
         http
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/process-login")
-                        .defaultSuccessUrl("/home", true)
-                        .permitAll()
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests( author ->
+                        author.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                .requestMatchers("/login", "/register","/css/**", "/javascript/**", "/image/**").permitAll()
+                                .requestMatchers("/admin/**").hasAuthority(String.valueOf(Roles.ROLES_ADMIN))
+                                .anyRequest().authenticated()
                 )
-                .logout(LogoutConfigurer::permitAll)
-                .exceptionHandling(e -> e.accessDeniedPage("/403"))
-                .csrf(AbstractHttpConfigurer::disable);
+                .formLogin(login ->
+                        login.loginPage("/login")
+                                .loginProcessingUrl("/process-login")
+                                .defaultSuccessUrl("/", true)
+                                .successHandler((request, response, authentication) -> {
+                                    if (authentication.getName().equals("admin")) {
+                                        response.sendRedirect("/admin");
+                                    } else {
+                                        response.sendRedirect("/");
+                                    }
+                                })
+                                .permitAll()
+                )
+                .logout(logout ->
+                        logout.invalidateHttpSession(true)
+                                .clearAuthentication(true)
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/")
+                                .permitAll()
+                )
+                .authenticationManager(authenticationManager)
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                )
         ;
-
-
         return http.build();
     }
 
