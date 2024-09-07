@@ -3,11 +3,9 @@ package com.example.phonecommerce.dto;
 import com.example.phonecommerce.models.Roles;
 import lombok.Data;
 
-import java.util.List;
-
 
 @Data
-public class userDTO {
+public class UserDTO {
 
     private Long id;
 
