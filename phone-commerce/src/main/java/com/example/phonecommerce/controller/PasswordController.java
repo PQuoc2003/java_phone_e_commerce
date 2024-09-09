@@ -1,6 +1,7 @@
 package com.example.phonecommerce.controller;
 
 import com.example.phonecommerce.dto.EmailRequest;
+import com.example.phonecommerce.dto.PasswordGenerator;
 import com.example.phonecommerce.models.User;
 import com.example.phonecommerce.service.EmailService;
 import com.example.phonecommerce.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.thymeleaf.context.Context;
 
 import java.util.List;
 
@@ -20,9 +22,9 @@ public class PasswordController {
 
     private final UserService userService;
 
-    private EmailService emailService;
+    private final EmailService emailService;
 
-    private BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     @Autowired
@@ -40,7 +42,7 @@ public class PasswordController {
     }
 
 
-//    Mechanic is : generate new password and send to email of user.
+    //    Mechanic is : generate new password and send to email of user.
 //    User can change their password after receive new password.
     @PostMapping(value = "forgot-password")
     public String validatedPassword(@ModelAttribute("user") User currUser, Model model) {
@@ -56,8 +58,24 @@ public class PasswordController {
 
         emailRequest.setTo(currUser.getEmail());
 
+        String newPassword = PasswordGenerator.generate(12);
 
 
+        currUser.setPassword(passwordEncoder.encode(newPassword));
+
+        emailRequest.setBody("Your new password is: " + newPassword);
+        emailRequest.setSubject("RESET PASSWORD");
+        userService.saveUser(currUser);
+
+        Context context = new Context();
+
+        context.setVariable("message", emailRequest.getBody());
+
+        emailService.sendEmailWithHtmlTemplate(
+                emailRequest.getTo(),
+                emailRequest.getSubject(),
+                "email-template",
+                context);
 
 
         return "redirect:/Login";
