@@ -56,19 +56,19 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( author ->
                         author.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/login", "/register","/css/**", "/javascript/**", "/image/**").permitAll()
+                                .requestMatchers("/login", "/register", "/forgot-password","/css/**", "/javascript/**", "/image/**").permitAll()
                                 .requestMatchers("/admin/**").hasAuthority(String.valueOf(Roles.ROLES_ADMIN))
                                 .anyRequest().authenticated()
                 )
                 .formLogin(login ->
                         login.loginPage("/login")
                                 .loginProcessingUrl("/process-login")
-                                .defaultSuccessUrl("/", true)
+                                .defaultSuccessUrl("/home", true)
                                 .successHandler((request, response, authentication) -> {
                                     if (authentication.getName().equals("admin")) {
                                         response.sendRedirect("/admin");
                                     } else {
-                                        response.sendRedirect("/");
+                                        response.sendRedirect("/home");
                                     }
                                 })
                                 .permitAll()

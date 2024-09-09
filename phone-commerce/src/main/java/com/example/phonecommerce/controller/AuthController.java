@@ -42,8 +42,7 @@ public class AuthController {
     public String registerForm(@ModelAttribute("newUser") User newUser, Model model) {
         String password = newUser.getPassword();
 
-//        Skip step encode password, will add later
-//        newUser.setPassword(passwordEncoder.encode(password));
+        newUser.setPassword(bCryptPasswordEncoder.encode(password));
 
         newUser.setRoles(Roles.ROLES_USER);
 
@@ -55,6 +54,9 @@ public class AuthController {
             return "redirect:/register";
         }
     }
+
+
+
 
 
 

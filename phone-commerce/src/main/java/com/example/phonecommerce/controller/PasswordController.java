@@ -44,7 +44,7 @@ public class PasswordController {
 
     //    Mechanic is : generate new password and send to email of user.
 //    User can change their password after receive new password.
-    @PostMapping(value = "forgot-password")
+    @PostMapping(value = "/forgot-password")
     public String validatedPassword(@ModelAttribute("user") User currUser, Model model) {
         List<User> users = userService.findByEmail(currUser.getEmail());
 
