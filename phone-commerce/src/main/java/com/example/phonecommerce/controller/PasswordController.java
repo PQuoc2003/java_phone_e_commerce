@@ -52,18 +52,9 @@ public class PasswordController {
         }
 
 
-
         EmailRequest emailRequest = new EmailRequest();
 
         emailRequest.setTo(currUser.getEmail());
-
-
-
-
-
-
-
-
 
 
 
