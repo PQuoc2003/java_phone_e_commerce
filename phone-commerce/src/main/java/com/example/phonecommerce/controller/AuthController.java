@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 
 @Slf4j
 @Controller
@@ -26,17 +28,16 @@ public class AuthController {
 
 
     @GetMapping(value = {"/", "/login"})
-    public String loginForm(Model model, User user){
+    public String loginForm(Model model, User user) {
         model.addAttribute("user", user);
         return "Login";
     }
 
     @GetMapping(value = {"/register"})
-    public String registerForm(Model model){
+    public String registerForm(Model model) {
         model.addAttribute("newUser", new User());
         return "Register";
     }
-
 
     @PostMapping("/register")
     public String registerForm(@ModelAttribute("newUser") User newUser, Model model) {
@@ -46,21 +47,25 @@ public class AuthController {
 
         newUser.setRoles(Roles.ROLES_USER);
 
-        try {
-            userService.saveUser(newUser);
-            return "redirect:/login";
-        }catch(Exception e){
+
+        List<User> checkedUsers = userService.findByEmail(newUser.getEmail());
+
+        if (!checkedUsers.isEmpty()) {
             model.addAttribute("errorRegister", "Đăng ký không thành công, email đã tồn tại");
             return "redirect:/register";
         }
+
+
+        try {
+            userService.saveUser(newUser);
+            return "redirect:/login";
+        } catch (Exception e) {
+            model.addAttribute("errorRegister", "Đăng ký không thành công, email đã tồn tại");
+            return "redirect:/register";
+        }
+
+
     }
-
-
-
-
-
-
-
 
 
 }
