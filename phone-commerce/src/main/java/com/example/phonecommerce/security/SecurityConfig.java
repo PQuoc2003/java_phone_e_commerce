@@ -22,7 +22,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig {
 
-
     private final UserRepository userRepository;
 
     @Autowired
@@ -56,7 +55,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( author ->
                         author.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/login", "/register", "/forgot-password","/css/**", "/javascript/**", "/image/**").permitAll()
+                                .requestMatchers("/login").permitAll()
+                                .requestMatchers("/register").permitAll()
+                                .requestMatchers("/forgot-password").permitAll()
+                                .requestMatchers("/css/**", "/javascript/**", "/image/**").permitAll()
                                 .requestMatchers("/admin/**").hasAuthority(String.valueOf(Roles.ROLES_ADMIN))
                                 .anyRequest().authenticated()
                 )
