@@ -3,6 +3,7 @@ package com.example.phonecommerce.service.imp;
 import com.example.phonecommerce.service.EmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,15 @@ import org.thymeleaf.context.Context;
 public class EmailServiceImp implements EmailService {
 
 
-    private JavaMailSender emailSender;
+    private final JavaMailSender emailSender;
 
-    private TemplateEngine templateEngine;
+    private final TemplateEngine templateEngine;
+
+    @Autowired
+    public EmailServiceImp(JavaMailSender emailSender, TemplateEngine templateEngine) {
+        this.emailSender = emailSender;
+        this.templateEngine = templateEngine;
+    }
 
     @Override
     public void sendEmailWithHtmlTemplate(String to, String subject, String templateName, Context context) {
@@ -23,7 +30,7 @@ public class EmailServiceImp implements EmailService {
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, "UTF-8");
 
         try {
-            mimeMessageHelper.setFrom("dinhphuquoc2003@gmail.com");
+            mimeMessageHelper.setFrom("noreply@dpq.com");
             mimeMessageHelper.setTo(to);
             mimeMessageHelper.setSubject(subject);
             String htmlContent = templateEngine.process(templateName, context);
@@ -32,7 +39,7 @@ public class EmailServiceImp implements EmailService {
 
 
         } catch (MessagingException e) {
-
+            // Exception, nothing.
         }
 
 

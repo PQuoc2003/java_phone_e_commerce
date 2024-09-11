@@ -43,10 +43,11 @@ public class PasswordController {
 
 
     //    Mechanic is : generate new password and send to email of user.
-//    User can change their password after receive new password.
+    //    User can change their password after receive new password.
     @PostMapping(value = "/forgot-password")
     public String validatedPassword(@ModelAttribute("user") User currUser, Model model) {
         List<User> users = userService.findByEmail(currUser.getEmail());
+
 
         if (users.isEmpty()) {
             model.addAttribute("error", "Can't find your email");
@@ -61,11 +62,14 @@ public class PasswordController {
         String newPassword = PasswordGenerator.generate(12);
 
 
-        currUser.setPassword(passwordEncoder.encode(newPassword));
+        User myUser = users.get(0);
+
+
+        myUser.setPassword(passwordEncoder.encode(newPassword));
 
         emailRequest.setBody("Your new password is: " + newPassword);
         emailRequest.setSubject("RESET PASSWORD");
-        userService.saveUser(currUser);
+        userService.saveUser(myUser);
 
         Context context = new Context();
 
@@ -76,7 +80,6 @@ public class PasswordController {
                 emailRequest.getSubject(),
                 "email-template",
                 context);
-
 
         return "redirect:/Login";
     }
