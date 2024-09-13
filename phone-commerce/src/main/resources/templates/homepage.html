@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" th:href="@{/HomePage.css}">
+    <link rel="stylesheet" th:href="@{/css/HomePage.css}">
 
 </head>
 
@@ -20,7 +20,7 @@
     <!-- header section starts  -->
 
     <header class="header">
-        <a href="#" class="logo"> <i class="fas fa-shopping-cart"></i>TLOShop </a>
+        <a href="#" class="logo"> <i class="fas fa-shopping-cart"></i>PhuQuoc-Shop</a>
         <nav class="navbar">
             <a href="/HomePage">Trang Chủ</a>
             <a href="/HomePage">Sản Phẩm</a>
@@ -33,10 +33,11 @@
         <div class="icons">
             <div id="menu-btn" class="fas fa-bars"></div>
             <div id="search-btn" class="fas fa-search"></div>
-            <a onclick=" showCart()" class="fas fa-shopping-cart"></a>
+            <a onclick="showCart()" class="fas fa-shopping-cart"></a>
             <a href="#" class="fas fa-heart"></a>
         </div>
 
+        <div>HELLO FROM YOUR GOD</div>
         <form action="" class="search-form" onkeydown="searchBox()">
             <input type="text" name="search" id="search-box" placeholder="Search here... ">
             <label class="fas fa-search"></label>
@@ -271,7 +272,7 @@
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
     <!-- custom js file link -->
-    <script th:src="@{/HomePage.js}"></script>
+    <script th:src="@{/javascript/HomePage.js}"></script>
 
 </body>
 
