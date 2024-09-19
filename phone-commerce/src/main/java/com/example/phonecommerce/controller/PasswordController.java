@@ -84,7 +84,7 @@ public class PasswordController {
                 "email-template",
                 context);
 
-        return "redirect:/Login";
+        return "redirect:/login";
     }
 
 

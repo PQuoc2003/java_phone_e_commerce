@@ -17,7 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p.id, p.name, p.brand.name, p.color.name, p.price, p.description, p.picture,p.category FROM Product p " +
             "WHERE " +
             "(:category IS NULL OR p.category.name LIKE :category) " +
-            "AND (:color IS NULL OR p.color.name LIKE :color) " +
+            "AND (:colors IS NULL OR p.color.name LIKE :colors) " +
             "AND (:brand IS NULL OR p.brand.name LIKE :brand) " +
             "AND (:name IS NULL OR p.name LIKE CONCAT('%', :name, '%')) " +
             "AND (:minPrice IS NULL OR p.price >= :minPrice) " +
@@ -25,7 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Object[]> searchByManyCondition(@Param("category") String category,
                                          @Param("name") String name,
                                          @Param("brand") String brand,
-                                         @Param("color") String color,
+                                         @Param("colors") String colors,
                                          @Param("minPrice") int minPrice,
                                          @Param("maxPrice") int maxPrice);
 

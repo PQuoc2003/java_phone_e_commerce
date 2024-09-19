@@ -17,9 +17,13 @@ public class HomeController {
     }
 
 
-//    @GetMapping(value = "/admin")
-//    public String adminHome() {
-//        return "Admin/Home_Admin";
-//    }
+    @GetMapping(value =  "/error")
+    public String errorPage() {return "redirect:/home";}
+
+
+    @GetMapping(value = "/admin")
+    public String adminHome() {
+        return "admin/admin_home";
+    }
 
 }

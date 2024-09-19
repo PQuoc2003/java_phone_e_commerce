@@ -67,8 +67,8 @@ public class SecurityConfig {
                                 .loginProcessingUrl("/process-login")
                                 .defaultSuccessUrl("/home", true)
                                 .successHandler((request, response, authentication) -> {
-                                    if (authentication.getName().equals("admin")) {
-                                        response.sendRedirect("/admin");
+                                    if (authentication.getName().equals("admin_template")) {
+                                        response.sendRedirect("/admin_template");
                                     } else {
                                         response.sendRedirect("/home");
                                     }
