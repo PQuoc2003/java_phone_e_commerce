@@ -23,7 +23,7 @@ public class HomeController {
 
     @GetMapping(value = "/admin")
     public String adminHome() {
-        return "admin/admin_home";
+        return "admin_template/admin_home";
     }
 
 }
