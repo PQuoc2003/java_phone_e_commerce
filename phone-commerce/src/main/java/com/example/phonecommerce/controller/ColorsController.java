@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -42,6 +44,21 @@ public class ColorsController {
         colorsService.addColors(colors);
         return "redirect:/admin/color";
     }
+
+    @GetMapping("/admin/color/edit/{id}")
+    public String editColorPage(@PathVariable("id") Long id, Model model) {
+        Colors colors = colorsService.getColorById(id);
+        model.addAttribute("colors", colors);
+        return "admin_template/admin_edit-colors";
+    }
+
+    @PostMapping("/admin/color/edit/{id}")
+    public String editColor_Admin(@PathVariable Long id, @ModelAttribute("colors") Colors updateColors) {
+        colorsService.updateColors(updateColors);
+        return "redirect:/admin/color";
+    }
+
+
 
 
 
