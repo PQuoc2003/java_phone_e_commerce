@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -53,7 +52,7 @@ public class ColorsController {
     }
 
     @PostMapping("/admin/color/edit/{id}")
-    public String editColor_Admin(@PathVariable Long id, @ModelAttribute("colors") Colors updateColors) {
+    public String editColorProcess(@ModelAttribute("colors") Colors updateColors) {
         colorsService.updateColors(updateColors);
         return "redirect:/admin/color";
     }
