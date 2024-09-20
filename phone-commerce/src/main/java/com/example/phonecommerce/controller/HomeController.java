@@ -16,11 +16,6 @@ public class HomeController {
         return "403";
     }
 
-
-    @GetMapping(value =  "/error")
-    public String errorPage() {return "redirect:/home";}
-
-
     @GetMapping(value = "/admin")
     public String adminHome() {
         return "admin_template/admin_home";

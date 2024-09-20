@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -28,6 +30,23 @@ public class ColorsController {
         model.addAttribute("colors" , colors);
         return "admin_template/admin_colors";
     }
+
+    @GetMapping(value = {"/admin/color/add"})
+    public String addColors(Model model) {
+        model.addAttribute("colors", new Colors());
+        return "admin_template/admin_add-colors"; // Đặt tên template hiển thị form thêm thương hiệu
+    }
+
+    @PostMapping(value = {"/admin/color/add"})
+    public String addColor_Admin(@ModelAttribute("colors") Colors colors) {
+        colorsService.addColors(colors);
+        return "redirect:/admin/color";
+    }
+
+
+
+
+
 
 
 
