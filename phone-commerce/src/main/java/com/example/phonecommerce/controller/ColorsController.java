@@ -28,7 +28,7 @@ public class ColorsController {
 
         List<Colors> colors = colorsService.getAllColor();
 
-        model.addAttribute("colors" , colors);
+        model.addAttribute("colors", colors);
         return "admin_template/admin_colors";
     }
 
@@ -57,15 +57,11 @@ public class ColorsController {
         return "redirect:/admin/color";
     }
 
-
-
-
-
-
-
-
-
-
+    @GetMapping("/admin/color/delete/{id}")
+    public String deleteColor_Admin(@PathVariable Long id) {
+        colorsService.deleteColors(id);
+        return "redirect:/admin/color";
+    }
 
 
 }
