@@ -103,7 +103,7 @@
         </div>
         <hr>
         <div class="container">
-          <a href="/admin/color/add" class="add-product-btn">Thêm Màu Sắc</a>
+          <a href="/admin/brand/add" class="add-product-btn">Thêm Thương Hiệu</a>
         </div>
         <div class="row" style="padding: 20px;">
           <div class="col-md-12">
@@ -115,17 +115,17 @@
                   <thead >
                     <tr>
                       <th>ID</th>
-                      <th>Tên Màu Sắc</th>
+                      <th>Tên Thương Hiệu</th>
                       <th>Hành Động</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr th:each="color : ${colors}">
-                      <td th:text="${color.getId()}"></td>
-                      <td th:text="${color.getName()}"></td>
+                    <tr th:each="brand : ${brands}">
+                      <td th:text="${brand.getId()}"></td>
+                      <td th:text="${brand.getName()}"></td>
                       <td>
-                        <button type="button" class="btn btn-success"><a th:href="@{/admin/color/edit/{id}(id=${color.getId()})}"><img th:src="@{/admin_logo/pencil-square.svg}" alt=""></a></button>
-                        <button type="button" class="btn btn-danger"><a th:href="@{/admin/color/delete/{id}(id=${color.getId()})}"><img th:src="@{/admin_logo/trash.svg}" alt=""></a></button>
+                        <button type="button" class="btn btn-success"><a th:href="@{/admin/brand/edit/{id}(id=${brand.getId()})}"><img th:src="@{/admin_logo/pencil-square.svg}" alt=""></a></button>
+                        <button type="button" class="btn btn-danger"><a th:href="@{/admin/color/delete/{id}(id=${brand.getId()})}"><img th:src="@{/admin_logo/trash.svg}" alt=""></a></button>
                       </td>
                     </tr>
 

@@ -58,7 +58,7 @@ public class ColorsController {
     }
 
     @GetMapping("/admin/color/delete/{id}")
-    public String deleteColor_Admin(@PathVariable Long id) {
+    public String deleteColor(@PathVariable Long id) {
         colorsService.deleteColors(id);
         return "redirect:/admin/color";
     }
