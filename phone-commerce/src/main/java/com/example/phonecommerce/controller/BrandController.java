@@ -1,12 +1,14 @@
 package com.example.phonecommerce.controller;
 
 import com.example.phonecommerce.models.Brand;
+import com.example.phonecommerce.models.Colors;
 import com.example.phonecommerce.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -40,6 +42,21 @@ public class BrandController {
         brandService.addBrand(brand);
         return "redirect:/admin/brand";
     }
+
+    @GetMapping("/admin/brand/edit/{id}")
+    public String editBrandPage(@PathVariable("id") Long id, Model model) {
+        Brand brand = brandService.getBrandById(id);
+        model.addAttribute("brand", brand);
+        return "admin_template/admin_edit-brand";
+    }
+
+    @PostMapping("/admin/brand/edit/{id}")
+    public String editColorProcess(@ModelAttribute("brand") Brand updatedBrand) {
+        brandService.updateBrand(updatedBrand);
+        return "redirect:/admin/brand";
+    }
+
+
 
 
 
