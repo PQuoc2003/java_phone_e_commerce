@@ -1,7 +1,6 @@
 package com.example.phonecommerce.controller;
 
 import com.example.phonecommerce.models.Brand;
-import com.example.phonecommerce.models.Colors;
 import com.example.phonecommerce.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,8 +50,14 @@ public class BrandController {
     }
 
     @PostMapping("/admin/brand/edit/{id}")
-    public String editColorProcess(@ModelAttribute("brand") Brand updatedBrand) {
+    public String editBrandProcess(@ModelAttribute("brand") Brand updatedBrand) {
         brandService.updateBrand(updatedBrand);
+        return "redirect:/admin/brand";
+    }
+
+    @GetMapping("/admin/brand/delete/{id}")
+    public String deleteBrand(@PathVariable Long id) {
+        brandService.deleteBrandById(id);
         return "redirect:/admin/brand";
     }
 
