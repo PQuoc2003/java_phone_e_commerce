@@ -39,7 +39,7 @@ public class ColorsController {
     }
 
     @PostMapping(value = {"/admin/color/add"})
-    public String addColor_Admin(@ModelAttribute("colors") Colors colors) {
+    public String addColorsProcess(@ModelAttribute("colors") Colors colors) {
         colorsService.addColors(colors);
         return "redirect:/admin/color";
     }
