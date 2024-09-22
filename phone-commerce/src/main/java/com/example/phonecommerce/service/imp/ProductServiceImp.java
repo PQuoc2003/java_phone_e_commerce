@@ -21,8 +21,10 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public Page<Product> getAllProduct(Pageable page) {
-        return null;
+    public List<Product> getAllProduct(Pageable pageable, int page) {
+        if(page > pageable.getNumberOfPages()) return null;
+        Page<Product> pages = productRepository.findAll(PageRequest.of(page,5));
+        return pages.getContent();
     }
 
     @Override

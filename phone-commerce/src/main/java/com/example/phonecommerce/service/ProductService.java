@@ -12,7 +12,7 @@ import java.util.List;
 public interface ProductService {
 
 
-    Page<Product> getAllProduct(Pageable page);
+    List<Product> getAllProduct(Pageable pageable, int page);
 
     Product getProductById(Long id);
 
