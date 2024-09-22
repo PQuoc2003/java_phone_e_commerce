@@ -46,6 +46,19 @@ public class CategoryController {
         return "redirect:/admin/category";
     }
 
+    @GetMapping("/admin/category/edit/{id}")
+    public String editCategoryPage(@PathVariable("id") Long id, Model model) {
+        Category category = categoryService.getCategoryById(id);
+        model.addAttribute("category", category);
+        return "admin_template/admin_edit-category";
+    }
+
+    @PostMapping("/admin/category/edit/{id}")
+    public String editBrandProcess(@ModelAttribute("category") Category updatedCategory) {
+        categoryService.updateCategory(updatedCategory);
+        return "redirect:/admin/category";
+    }
+
 
     @GetMapping("/admin/category/delete/{id}")
     public String deleteCategory(@PathVariable Long id) {
