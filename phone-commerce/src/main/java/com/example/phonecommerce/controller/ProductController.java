@@ -12,9 +12,8 @@ import com.example.phonecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -52,20 +51,42 @@ public class ProductController {
         return "admin_template/admin_add-products";
     }
 
-    @PostMapping( value = {"/admin/product/add"})
-    public String addProduct(@ModelAttribute("product") Product product , @ModelAttribute("image") String image) {
+    @PostMapping(value = {"/admin/product/add"})
+    public String addProduct(@ModelAttribute("product") Product product,
+                             @ModelAttribute("image") String image) {
         product.setPicture(image);
         productService.addProduct(product);
 
         return "redirect:/admin/product";
     }
 
+    @GetMapping(value = "/admin/product/edit/{id}")
+    public String getEditProductPage(@PathVariable("id") Long id, Model model) {
+
+        Product product = productService.getProductById(id);
+
+        List<Brand> brands = brandService.getAllBrand();
+        List<Category> categories = categoryService.getAllCategory();
+        List<Colors> colors = colorsService.getAllColor();
 
 
+        model.addAttribute("brands", brands);
+        model.addAttribute("categories", categories);
+        model.addAttribute("colors", colors);
+        model.addAttribute("product", product);
+
+        return "admin_template/admin_edit-product";
+    }
 
 
+    @PostMapping(value = "/admin/product/edit/{id}")
+    public String editProductProcess(@ModelAttribute("product") Product updatedProduct,
+                                     @RequestParam("image") String image) {
+        updatedProduct.setPicture(image);
+        productService.updateProduct(updatedProduct);
 
+        return "redirect:/admin/product";
 
-
+    }
 
 }
