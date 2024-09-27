@@ -20,14 +20,13 @@
     <!-- header section starts  -->
 
     <header class="header">
-        <a href="#" class="logo"> <i class="fas fa-shopping-cart"></i>PhuQuoc-Shop</a>
+        <a href="#" class="logo"> <i class="fas fa-shopping-cart"></i>PQShop</a>
         <nav class="navbar">
-            <a href="/HomePage">Trang Chủ</a>
-            <a href="/HomePage">Sản Phẩm</a>
-            <a href="#review">Review</a>
-            <a href="#contact">Liên Hệ</a>
+            <a href="/homepage">Trang Chủ</a>
+            <a href="/home">Sản Phẩm</a>
+            <a th:if="${hasAdminRole}" href="/admin">Admin</a>
             <a href="#blogs">Blogs</a>
-            <a href="/Login">Đăng Nhập</a>
+            <a href="/logout">Đăng xuất</a>
         </nav>
 
         <div class="icons">
@@ -142,80 +141,21 @@
         <h1 class="heading"> our <span>blogs</span></h1>
         <div class="swiper blogs-slider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide slide">
+                <div th:each="i : ${#numbers.sequence(0,4)}" class="swiper-slide slide">
                     <div class="image">
-                        <img src="/homepage_img/blogs/blog1.jpg" alt="">
+                        <img th:src="@{'/homepage_img/blogs/b' + ${i+1} + '.jpg'}" alt="">
                     </div>
                     <div class="content">
-                        <h3>Hãy Đến với TLOShop </h3>
+                        <h3>Hãy Đến với PQShop</h3>
                         <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
                         <a href="#" class="btn">Đọc Thêm</a>
                         <div class="icons">
-                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
+                            <a href="#"> <i class="fas fa-calendar"></i> 27th September 2024 </a>
                             <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="swiper-slide slide">
-                    <div class="image">
-                        <img src="/homepage_img/blogs/blog2.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>Hãy Đến với PQShop </h3>
-                        <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
-                        <a href="#" class="btn">Đọc Thêm</a>
-                        <div class="icons">
-                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
-                            <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide slide">
-                    <div class="image">
-                        <img src="/homepage_img/blogs/blog3.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>Hãy Đến với TLOShop </h3>
-                        <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
-                        <a href="#" class="btn">Đọc Thêm</a>
-                        <div class="icons">
-                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
-                            <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide slide">
-                    <div class="image">
-                        <img src="/homepage_img/blogs/blog4.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>Hãy Đến với PQShop </h3>
-                        <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
-                        <a href="#" class="btn">Đọc Thêm</a>
-                        <div class="icons">
-                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
-                            <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide slide">
-                    <div class="image">
-                        <img src="/homepage_img/blogs/blog5.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>Hãy Đến với TLOShop </h3>
-                        <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
-                        <a href="#" class="btn">Đọc Thêm</a>
-                        <div class="icons">
-                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
-                            <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
