@@ -6,11 +6,13 @@ import com.example.phonecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProductServiceImp implements ProductService {
 
     private final ProductRepository productRepository;

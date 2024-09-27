@@ -10,10 +10,18 @@ import com.example.phonecommerce.service.CategoryService;
 import com.example.phonecommerce.service.ColorsService;
 import com.example.phonecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.Instant;
 import java.util.List;
 
 @Controller
@@ -44,16 +52,63 @@ public class ProductController {
         List<Category> categories = categoryService.getAllCategory();
         List<Brand> brands = brandService.getAllBrand();
         List<Colors> colors = colorsService.getAllColor();
+        Product product = new Product();
         model.addAttribute("categories", categories);
         model.addAttribute("brands", brands);
         model.addAttribute("colors", colors);
+        model.addAttribute("product", product);
         return "admin_template/admin_add-products";
     }
 
     @PostMapping(value = {"/admin/product/add"})
     public String addProduct(@ModelAttribute("product") Product product,
-                             @ModelAttribute("image") String image) {
-        product.setPicture(image);
+                             @RequestParam("image") MultipartFile image) {
+
+
+        if(image.getOriginalFilename() == null) return "redirect: /admin/product/add";
+
+        String sourceDirectory = "src/main/resources/static";
+        String uploadDirectory = "/image";
+        String finalDirectory  = sourceDirectory + uploadDirectory;
+
+
+
+
+
+        String times = String.valueOf(Instant.now().getEpochSecond());
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String username = authentication.getName();
+
+        if (username.isEmpty())
+            return "redirect:/login";
+
+
+
+
+        String[] nameList = image.getOriginalFilename().split("\\.");
+
+        if (nameList.length < 2) return "redirect: /admin/product/add";
+
+        String fileExtension = nameList[nameList.length - 1];
+
+        String fileName = username + times + "." + fileExtension;
+
+        Path path = Paths.get(finalDirectory, fileName);
+
+
+        try {
+
+            Files.write(path, image.getBytes());
+
+        } catch (Exception e) {
+            System.out.println("Error when upload file");
+            e.printStackTrace();
+        }
+
+
+        product.setPicture(fileName);
         productService.addProduct(product);
 
         return "redirect:/admin/product";

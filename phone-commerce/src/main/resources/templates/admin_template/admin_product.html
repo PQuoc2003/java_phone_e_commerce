@@ -131,16 +131,16 @@
                     </td>
                     <td th:text="${product.getName()}">
                     </td>
-                    <td th:text="${product.getCategory()}">
+                    <td th:text="${product.getCategory().getName()}">
                     </td>
-                    <td th:text="${product.getColor()}"></td>
-                    <td th:text="${product.getBrand()}">
+                    <td th:text="${product.getColor().getName()}"></td>
+                    <td th:text="${product.getBrand().getName()}">
                     </td>
                     <td th:text="${product.getPrice()}"></td>
                     <td>
-                      <button type="button" class="btn btn-success"><a th:href="@{/admin/product/edit/{id}(id=${product.id})}"><img th:src="@{/Logo_Admin/pencil-square.svg}" alt=""></a></button>
-                      <button type="button" class="btn btn-warning"><a th:href="@{/admin/product/detail/{id}(id=${product.id})}"><img th:src="@{/Logo_Admin/columns-gap.svg}" alt=""></a></button>
-                      <button type="button" class="btn btn-danger"><a th:href="@{/admin/product/delete/{id}(id=${product.id})}"><img th:src="@{/Logo_Admin/trash.svg}" alt=""></a></button>
+                      <button type="button" class="btn btn-success"><a th:href="@{/admin/product/edit/{id}(id=${product.id})}"><img th:src="@{/admin_logo/pencil-square.svg}" alt=""></a></button>
+                      <button type="button" class="btn btn-warning"><a th:href="@{/admin/product/detail/{id}(id=${product.id})}"><img th:src="@{/admin_logo/columns-gap.svg}" alt=""></a></button>
+                      <button type="button" class="btn btn-danger"><a th:href="@{/admin/product/delete/{id}(id=${product.id})}"><img th:src="@{/admin_logo/trash.svg}" alt=""></a></button>
                     </td>
                   </tr>
                 </table>

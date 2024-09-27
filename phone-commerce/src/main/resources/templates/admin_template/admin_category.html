@@ -124,8 +124,12 @@
                       <td th:text="${category.getId()}"></td>
                       <td th:text="${category.getName()}"></td>
                       <td>
-                        <button type="button" class="btn btn-success"><a th:href="@{/admin/category/edit/{id}(id=${category.getId()})}"><img th:src="@{/Logo_Admin/pencil-square.svg}" alt=""></a></button>
-                        <button type="button" class="btn btn-danger"><a th:href="@{/admin/category/delete/{id}(id=${category.getId()})}"><img th:src="@{/Logo_Admin/trash.svg}" alt=""></a></button>
+                        <button type="button" class="btn btn-success"><a th:href="@{/admin/category/edit/{id}(id=${category.getId()})}">
+                          <img th:src="@{/admin_logo/pencil-square.svg}" alt=""></a>
+                        </button>
+                        <button type="button" class="btn btn-danger"><a th:href="@{/admin/category/delete/{id}(id=${category.getId()})}">
+                          <img th:src="@{/admin_logo/trash.svg}" alt=""></a>
+                        </button>
                       </td>
                     </tr>
 
