@@ -1,5 +1,7 @@
 package com.example.phonecommerce.service.imp;
 
+import com.example.phonecommerce.models.Brand;
+import com.example.phonecommerce.models.Colors;
 import com.example.phonecommerce.models.Product;
 import com.example.phonecommerce.repository.ProductRepository;
 import com.example.phonecommerce.service.ProductService;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,4 +55,12 @@ public class ProductServiceImp implements ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
+    @Override
+    public List<Product> search(String category, String name, String brand, int minPrice, int maxPrice, String color) {
+        return productRepository.searchByManyCondition(category, name, brand, color, minPrice, maxPrice);
+
+    }
+
+
 }

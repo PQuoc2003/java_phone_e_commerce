@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    @Query("SELECT p.id, p.name, p.brand.name, p.color.name, p.price, p.description, p.picture,p.category FROM Product p " +
+    @Query("SELECT p FROM Product p " +
             "WHERE " +
             "(:category IS NULL OR p.category.name LIKE :category) " +
             "AND (:colors IS NULL OR p.color.name LIKE :colors) " +
@@ -22,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "AND (:name IS NULL OR p.name LIKE CONCAT('%', :name, '%')) " +
             "AND (:minPrice IS NULL OR p.price >= :minPrice) " +
             "AND (:maxPrice IS NULL OR p.price <= :maxPrice)")
-    List<Object[]> searchByManyCondition(@Param("category") String category,
+    List<Product> searchByManyCondition(@Param("category") String category,
                                          @Param("name") String name,
                                          @Param("brand") String brand,
                                          @Param("colors") String colors,
@@ -34,6 +34,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByCategoryId(@Param("categoryId") Long categoryId);
 
     Page<Product> findAll(Pageable pageable);
+
+
+
+
+
 
 
 

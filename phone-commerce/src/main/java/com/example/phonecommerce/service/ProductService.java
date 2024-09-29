@@ -24,6 +24,9 @@ public interface ProductService {
 
     List<Product> getAllProducts();
 
+    List<Product> search(String category, String name,String brand,int minPrice,int maxPrice,String color);
+
+
 
 
 }
