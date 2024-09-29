@@ -3,16 +3,16 @@ package com.example.phonecommerce.service;
 
 import com.example.phonecommerce.models.Product;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
 public interface ProductService {
 
 
-    List<Product> getAllProduct(Pageable pageable, int page);
+    Page<Product> getAllProduct(Pageable pageable);
 
     Product getProductById(Long id);
 
