@@ -5,7 +5,9 @@ import com.example.phonecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,33 +26,32 @@ public class ProductAPI {
 
 
     @GetMapping("/api/products/all")
-    public Page<Product> getAllProduct(Pageable pageable){
+    public Page<Product> getAllProduct(Pageable pageable) {
         return productService.getAllProduct(pageable);
     }
 
     @GetMapping("/api/products/filter")
     public List<Product> filterProducts(
-            @RequestParam(name = "productName", required = false ,defaultValue = "") String productName,
-            @RequestParam(name = "color", required = false , defaultValue = "") String color,
-            @RequestParam(name = "category", required = false ,defaultValue = "") String category,
-            @RequestParam(name = "brand", required = false ,defaultValue = "") String brand,
-            @RequestParam(name = "minPrice", required = false,defaultValue = "0")  int minPrice,
-            @RequestParam(name = "maxPrice", required = false,defaultValue = "999999999") int maxPrice) {
-        return productService.search(category ,productName , brand, minPrice , maxPrice ,color);
+            @RequestParam(name = "productName", required = false, defaultValue = "") String productName,
+            @RequestParam(name = "color", required = false, defaultValue = "") String color,
+            @RequestParam(name = "category", required = false, defaultValue = "") String category,
+            @RequestParam(name = "brand", required = false, defaultValue = "") String brand,
+            @RequestParam(name = "minPrice", required = false, defaultValue = "0") int minPrice,
+            @RequestParam(name = "maxPrice", required = false, defaultValue = "999999999") int maxPrice) {
+        return productService.search(category, productName, brand, minPrice, maxPrice, color);
     }
 
+    @GetMapping("/api/products/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+
+        Product product = productService.getProductById(id);
+
+        if (product == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok().body(product);
 
 
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 }
