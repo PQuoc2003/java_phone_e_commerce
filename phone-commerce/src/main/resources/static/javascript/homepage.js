@@ -164,7 +164,7 @@ const productContainer = document.getElementById("product-container");
 
 // Hàm để lấy dữ liệu từ API với trang và kích thước trang cụ thể
 function fetchData(page, size) {
-  fetch(`http://localhost:8080/api/products?page=${page}&size=${size}`)
+  fetch(`http://localhost:8080/api/products/all?page=${page}&size=${size}`)
       .then(response => response.json())
       .then(data => {
         jsonData = data;
