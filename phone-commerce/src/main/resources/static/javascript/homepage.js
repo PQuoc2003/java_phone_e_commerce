@@ -333,20 +333,22 @@ function deleteCart(index) {
   }
 }
 // ___________________________________________________________________________________
-//_______________loc san pham__________________________________________________
+//_______________filter product__________________________________________________
 function filterProducts() {
+
   const productName = document.getElementById('productName').value;
-  var selectBoxColor = document.getElementById("colorDropdown");
-  var selectedOptionColor = selectBoxColor.options[selectBoxColor.selectedIndex];
-  var color = selectedOptionColor.text;
 
-  var selectBoxCategory = document.getElementById("categoryDropdown");
-  var selectedOptionCategory = selectBoxCategory.options[selectBoxCategory.selectedIndex];
-  var category = selectedOptionCategory.text;
+  let selectBoxColor= document.getElementById("colorDropdown");
+  let selectedOptionColor = selectBoxColor.options[selectBoxColor.selectedIndex];
+  let color = selectedOptionColor.text;
 
-  var selectBoxBrand = document.getElementById("brandDropdown");
-  var selectedOptionBrand = selectBoxBrand.options[selectBoxBrand.selectedIndex];
-  var brand = selectedOptionBrand.text;
+  let selectBoxCategory = document.getElementById("categoryDropdown");
+  let selectedOptionCategory = selectBoxCategory.options[selectBoxCategory.selectedIndex];
+  let category = selectedOptionCategory.text;
+
+  let selectBoxBrand = document.getElementById("brandDropdown");
+  let selectedOptionBrand = selectBoxBrand.options[selectBoxBrand.selectedIndex];
+  let brand = selectedOptionBrand.text;
 
   const minPrice = document.getElementById('minPrice').value;
   const maxPrice = document.getElementById('maxPrice').value;
