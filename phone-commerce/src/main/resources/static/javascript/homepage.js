@@ -164,7 +164,7 @@ const productContainer = document.getElementById("product-container");
 
 // Hàm để lấy dữ liệu từ API với trang và kích thước trang cụ thể
 function fetchData(page, size) {
-  fetch(`http://localhost:8080/api/products?page=${page}&size=${size}`)
+  fetch(`http://localhost:8080/api/products/all?page=${page}&size=${size}`)
       .then(response => response.json())
       .then(data => {
         jsonData = data;
@@ -333,20 +333,22 @@ function deleteCart(index) {
   }
 }
 // ___________________________________________________________________________________
-//_______________loc san pham__________________________________________________
+//_______________filter product__________________________________________________
 function filterProducts() {
+
   const productName = document.getElementById('productName').value;
-  var selectBoxColor = document.getElementById("colorDropdown");
-  var selectedOptionColor = selectBoxColor.options[selectBoxColor.selectedIndex];
-  var color = selectedOptionColor.text;
 
-  var selectBoxCategory = document.getElementById("categoryDropdown");
-  var selectedOptionCategory = selectBoxCategory.options[selectBoxCategory.selectedIndex];
-  var category = selectedOptionCategory.text;
+  let selectBoxColor= document.getElementById("colorDropdown");
+  let selectedOptionColor = selectBoxColor.options[selectBoxColor.selectedIndex];
+  let color = selectedOptionColor.text;
 
-  var selectBoxBrand = document.getElementById("brandDropdown");
-  var selectedOptionBrand = selectBoxBrand.options[selectBoxBrand.selectedIndex];
-  var brand = selectedOptionBrand.text;
+  let selectBoxCategory = document.getElementById("categoryDropdown");
+  let selectedOptionCategory = selectBoxCategory.options[selectBoxCategory.selectedIndex];
+  let category = selectedOptionCategory.text;
+
+  let selectBoxBrand = document.getElementById("brandDropdown");
+  let selectedOptionBrand = selectBoxBrand.options[selectBoxBrand.selectedIndex];
+  let brand = selectedOptionBrand.text;
 
   const minPrice = document.getElementById('minPrice').value;
   const maxPrice = document.getElementById('maxPrice').value;

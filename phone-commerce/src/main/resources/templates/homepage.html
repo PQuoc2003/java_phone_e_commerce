@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TLO Shop</title>
+    <title>PhuQuoc Shop</title>
 
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
@@ -36,7 +36,6 @@
             <a href="#" class="fas fa-heart"></a>
         </div>
 
-        <div>HELLO FROM YOUR GOD</div>
         <form action="" class="search-form" onkeydown="searchBox()">
             <input type="text" name="search" id="search-box" placeholder="Search here... ">
             <label class="fas fa-search"></label>
@@ -95,6 +94,8 @@
             <div class="buttons" data-filter="seller">Bán Chạy Nhất</div>
         </div>
         <h1 class="heading"> Lọc<span> Sản Phẩm</span> </h1>
+
+
         <!-- products section starts  -->
         <div class="filter_list">
 
@@ -117,6 +118,9 @@
             <input type="text" id="maxPrice">
             <button class = "filter_buttons_list" onclick="filterProducts()">Filter</button>
         </div>
+
+
+
 
         <div class="box-container" id="product-container">
             <div class="swiper-button-next"></div>
@@ -212,7 +216,7 @@
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
     <!-- custom js file link -->
-    <script th:src="@{/javascript/HomePage.js}"></script>
+    <script th:src="@{/javascript/homepage.js}"></script>
 
 </body>
 
