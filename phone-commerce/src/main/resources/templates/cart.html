@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TLO Shop Cart</title>
+    <title>PQShop Cart</title>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -14,10 +14,10 @@
     <link rel="stylesheet" th:href="@{/css/HomePage.css}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
     <link rel="stylesheet" th:href="@{/Cart_fonts/icomoon/style.css}">
-    <link rel="stylesheet" th:href="@{/Cart_Css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/Cart_Css/owl.carousel.min.css}">
-    <link rel="stylesheet" th:href="@{/Cart_Css/owl.theme.default.min.css}">
-    <link rel="stylesheet" th:href="@{/Cart_Css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cart/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/cart/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/css/cart/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{/css/cart/style.css}">
 
 </head>
 
@@ -25,7 +25,7 @@
     <!-- header section starts  -->
 
     <header class="header">
-        <a href="#" class="logo"> <i class="fas fa-shopping-cart"></i>TLOShop </a>
+        <a href="#" class="logo"> <i class="fas fa-shopping-cart"></i>PQShop </a>
         <nav class="navbar">
             <a href="/HomePage">Trang Chủ</a>
             <a href="/HomePage">Sản Phẩm</a>
@@ -143,11 +143,11 @@
 
         </div>
         <div class="share">
-            <a href="https://www.facebook.com/NguyenLamThanhLong" class="fab fa-facebook-f"></a>
-            <a href="https://www.tiktok.com/@longndp_" class="fab fa-twitter"></a>
-            <a href="https://github.com/thanhlongqax" class="fab fa-pinterest"></a>
-            <a href="https://www.linkedin.com/in/nguyenlamthanhlong" class="fab fa-linkedin"></a>
-            <a href="https://www.instagram.com/longndp" class="fab fa-instagram"></a>
+            <a href="" class="fab fa-facebook-f"></a>
+            <a href="" class="fab fa-twitter"></a>
+            <a href="" class="fab fa-pinterest"></a>
+            <a href="" class="fab fa-linkedin"></a>
+            <a href="" class="fab fa-instagram"></a>
         </div>
     </section>
 
@@ -155,17 +155,17 @@
 
     <!-- custom js file link -->
     <script th:inline="javascript">
-        var userId = /*[[${userId}]]*/ null;
+        let userId = /*[[${userId}]]*/ null;
     </script>
     <script th:src="@{/Cart.js}"></script>
-    <script th:src="@{/Cart_Js/jquery-3.3.1.min.js}"></script>
-    <script th:src="@{/Cart_Js/jquery-ui.js}"></script>
-    <script th:src="@{/Cart_Js/popper.min.js}"></script>
-    <script th:src="@{/Cart_Js/bootstrap.min.js}"></script>
-    <script th:src="@{/Cart_Js/owl.carousel.min.js}"></script>
-    <script th:src="@{/Cart_Js/jquery.magnific-popup.min.js}"></script>
-    <script th:src="@{/Cart_Js/aos.js}"></script>
-    <script th:src="@{/Cart_Js/main.js}"></script>
+    <script th:src="@{/javascript/cart/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/javascript/cart/jquery-ui.js}"></script>
+    <script th:src="@{/javascript/cart/popper.min.js}"></script>
+    <script th:src="@{/javascript/cart/bootstrap.min.js}"></script>
+    <script th:src="@{/javascript/cart/owl.carousel.min.js}"></script>
+    <script th:src="@{/javascript/cart/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/javascript/cart/aos.js}"></script>
+    <script th:src="@{/javascript/cart/main.js}"></script>
 
 </body>
 
