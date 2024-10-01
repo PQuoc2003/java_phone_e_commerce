@@ -9,7 +9,7 @@ public interface CartItemsService {
 
     CartItems getCartItemById(Long id);
 
-    boolean deleteCartItemById(Long id);
+    void deleteCartItemById(Long id);
 
     void save(CartItems cartItems);
 
