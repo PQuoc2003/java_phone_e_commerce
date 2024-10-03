@@ -32,7 +32,7 @@ filterBtn.forEach(button => {
       item.classList.remove('active');
       item.classList.add('hide');
 
-      if (item.getAttribute('data-item') == dataFilter || dataFilter == 'all') {
+      if (item.getAttribute('data-item') === dataFilter || dataFilter === 'all') {
         item.classList.remove('hide');
         item.classList.add('active');
       }
@@ -214,10 +214,10 @@ fetchData(defaultPage, jsonData.size);
 function viewProductDetail(id) {
   fetch(`http://localhost:8080/api/products/${id}`)
       .then(response => response.json())
-      .then(productDetails => {
+      .then(() => {
         // Xử lý thông tin chi tiết sản phẩm nhận được từ API
         // Chuyển hướng người dùng đến trang chi tiết sản phẩm hoặc thực hiện xử lý khác
-        window.location.href = `/Detail?id=${id}`;
+        window.location.href = `/details?id=${id}`;
       })
       .catch(error => console.error('Error:', error));
 }
@@ -291,7 +291,7 @@ function showMyCart() {
         '</td>' +
         '<td>' +
         '<div class="box">' +
-        '<img src="/api/images/' + item.picture + ' "  style="width: 100px; height: 100px;">' +
+        '<img src="/api/images/' + item.picture + ' "  style="width: 100px; height: 100px;" alt="">' +
         '<p>' + item.name + '</p>' +
         '</div>' +
         '</td>' +
