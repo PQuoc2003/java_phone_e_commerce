@@ -1,0 +1,24 @@
+package com.example.phonecommerce.models;
+
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+
+@Entity
+public class OrderItems implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    private int quantity;
+
+}
