@@ -71,9 +71,6 @@ public class ProductController {
         String finalDirectory  = sourceDirectory + uploadDirectory;
 
 
-
-
-
         String times = String.valueOf(Instant.now().getEpochSecond());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -84,11 +81,9 @@ public class ProductController {
             return "redirect:/login";
 
 
-
-
         String[] nameList = image.getOriginalFilename().split("\\.");
 
-        if (nameList.length < 2) return "redirect: /admin/product/add";
+        if (nameList.length < 2) return "redirect:/admin/product/add";
 
         String fileExtension = nameList[nameList.length - 1];
 
@@ -146,6 +141,11 @@ public class ProductController {
 
         productService.removeById(id);
 
+        return "redirect:/admin/product";
+    }
+
+    @GetMapping("/admin/product/detail/{id}")
+    public String getProductDetailPage(@PathVariable("id") Long id){
         return "redirect:/admin/product";
     }
 
