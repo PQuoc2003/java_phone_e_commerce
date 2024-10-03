@@ -31,7 +31,7 @@ function addCart(product) {
         brand: brandSp,
         color: colorSp,
     };
-    gioHang = JSON.parse(sessionStorage.getItem("gioHang")) || [];
+    let gioHang = JSON.parse(sessionStorage.getItem("gioHang")) || [];
     const existingProductIndex = gioHang.findIndex((item) => item.id === parseInt(productId));
 
     if (existingProductIndex !== -1) {
@@ -40,6 +40,6 @@ function addCart(product) {
         gioHang = [...gioHang, Sp];
     }
     sessionStorage.setItem("gioHang", JSON.stringify(gioHang));
-    window.location.href = "/HomePage";
+    window.location.href = "/homepage";
 }
 
