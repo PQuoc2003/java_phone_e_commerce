@@ -27,12 +27,11 @@
     <header class="header">
         <a href="#" class="logo"> <i class="fas fa-shopping-cart"></i>PQShop </a>
         <nav class="navbar">
-            <a href="/HomePage">Trang Chủ</a>
-            <a href="/HomePage">Sản Phẩm</a>
-            <a href="#review">Review</a>
-            <a href="#contact">Liên Hệ</a>
+            <a href="/homepage">Trang Chủ</a>
+            <a href="/home">Sản Phẩm</a>
+            <a th:if="${hasAdminRole}" href="/admin">Admin</a>
             <a href="#blogs">Blogs</a>
-            <a href="/Login">Đăng Nhập</a>
+            <a href="/logout">Đăng xuất</a>
         </nav>
 
         <div class="icons">
@@ -42,10 +41,10 @@
             <a href="#" class="fas fa-heart"></a>
         </div>
 
-        <form action="" class="search-form" onkeydown="searchBox()">
-            <input type="text" name="search" id="search-box" placeholder="Search here... ">
-            <label for class="fas fa-search"></label>
-        </form>
+<!--        <form action="" class="search-form" onkeydown="searchBox()">-->
+<!--            <input type="text" name="search" id="search-box" placeholder="Search here... ">-->
+<!--            <label for class="fas fa-search"></label>-->
+<!--        </form>-->
 
 
     </header>
@@ -157,7 +156,7 @@
     <script th:inline="javascript">
         let userId = /*[[${userId}]]*/ null;
     </script>
-    <script th:src="@{/Cart.js}"></script>
+    <script th:src="@{/javascript/cart.js}"></script>
     <script th:src="@{/javascript/cart/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/javascript/cart/jquery-ui.js}"></script>
     <script th:src="@{/javascript/cart/popper.min.js}"></script>
