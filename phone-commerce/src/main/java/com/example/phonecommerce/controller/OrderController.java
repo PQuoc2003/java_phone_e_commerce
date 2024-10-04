@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class OrderController {
     }
 
 
-    @GetMapping("admin/orders")
+    @GetMapping("/admin/orders")
     public String getAdminOrderPage(Model model) {
 
         List<Orders> orders = ordersService.getAllOrder();
