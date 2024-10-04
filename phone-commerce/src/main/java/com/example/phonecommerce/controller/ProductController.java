@@ -145,8 +145,15 @@ public class ProductController {
     }
 
     @GetMapping("/admin/product/detail/{id}")
-    public String getProductDetailPage(@PathVariable("id") Long id){
-        return "redirect:/admin/product";
+    public String getProductDetailPage(@PathVariable("id") Long id, Model model){
+
+        Product product = productService.getProductById(id);
+
+        if (product == null) return "redirect:/admin/product";
+
+        model.addAttribute("product", product);
+
+        return "admin_template/admin_product-details";
     }
 
 
