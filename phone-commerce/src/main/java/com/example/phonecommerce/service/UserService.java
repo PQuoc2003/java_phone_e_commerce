@@ -10,6 +10,8 @@ public interface UserService{
 
     List<User> findByEmail(String email);
 
+    User findById(Long id);
+
     User saveUser(User user);
 
 }

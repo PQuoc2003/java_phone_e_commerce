@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -28,6 +29,12 @@ public class UserServiceImp implements UserService {
     @Override
     public List<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.orElse(null);
     }
 
     @Override

@@ -8,10 +8,10 @@ import java.util.Random;
 public class PaymentConfig {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnPaymentUrl = "http://localhost:8080/orderPage";
+    public static String vnp_ReturnPaymentUrl = "http://localhost:8080/orders-page";
     public static String vnp_ReturnExtendPaymentUrl = "http://localhost:8080/payment-extend/success";
-    public static String vnp_TmnCode = "3M5JZ72J";
-    public static String secretKey = "ab";
+    public static String vnp_TmnCode = "";
+    public static String secretKey = "";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 
     public static String hmacSHA512(final String key, final String data) {
