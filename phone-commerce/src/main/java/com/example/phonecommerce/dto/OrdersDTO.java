@@ -1,6 +1,6 @@
 package com.example.phonecommerce.dto;
 
-import com.example.phonecommerce.models.Order;
+import com.example.phonecommerce.models.Orders;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @Getter
 @Setter
-public class OrderDTO {
+public class OrdersDTO {
     private long id;
     private String FullName;
     private LocalDateTime OrderCreated;
@@ -22,7 +22,7 @@ public class OrderDTO {
     private String email;
     private int quantity;
 
-    public void convertToDTO(Order order){
+    public void convertToDTO(Orders order){
 
         this.id =order.getId();
         this.Total = order.getOrder_total();

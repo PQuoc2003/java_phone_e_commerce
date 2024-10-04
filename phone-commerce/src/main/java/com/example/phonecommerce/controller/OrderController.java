@@ -1,8 +1,8 @@
 package com.example.phonecommerce.controller;
 
-import com.example.phonecommerce.dto.OrderDTO;
-import com.example.phonecommerce.models.Order;
-import com.example.phonecommerce.service.OrderService;
+import com.example.phonecommerce.dto.OrdersDTO;
+import com.example.phonecommerce.models.Orders;
+import com.example.phonecommerce.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,27 +15,27 @@ import java.util.List;
 @Controller
 public class OrderController {
 
-    private final OrderService orderService;
+    private final OrdersService ordersService;
 
     @Autowired
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+    public OrderController(OrdersService ordersService) {
+        this.ordersService = ordersService;
     }
 
     @GetMapping("admin/orders")
     public String getAdminOrderPage(Model model){
 
-        List<Order> orders = orderService.getAllOrder();
+        List<Orders> orders = ordersService.getAllOrder();
 
-        List<OrderDTO> orderDTOS = new ArrayList<OrderDTO>();
+        List<OrdersDTO> ordersDTOS = new ArrayList<OrdersDTO>();
 
-        for (Order order: orders) {
-            OrderDTO orderDTO = new OrderDTO();
-            orderDTO.convertToDTO(order);
-            orderDTOS.add(orderDTO);
+        for (Orders order: orders) {
+            OrdersDTO ordersDTO = new OrdersDTO();
+            ordersDTO.convertToDTO(order);
+            ordersDTOS.add(ordersDTO);
         }
 
-        model.addAttribute("orders", orderDTOS);
+        model.addAttribute("orders", ordersDTOS);
 
         return "admin_template/admin_orders";
 
@@ -44,13 +44,13 @@ public class OrderController {
 
     @GetMapping("/admin/orders/delete/{id}")
     public String deleteOrder(@PathVariable Long id){
-        orderService.deleteById(id);
+        ordersService.deleteById(id);
         return "redirect:/admin/orders";
     }
 
     @GetMapping("/admin/orders/edit/{id}")
     public String updateStatus(@PathVariable Long id){
-        orderService.updateStatus(id);
+        ordersService.updateStatus(id);
         return "redirect:/admin/orders";
     }
 

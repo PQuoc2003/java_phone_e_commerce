@@ -53,7 +53,7 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 id="productPrice" class="font-weight-semi-bold mb-4" th:text="${product.price} + '.000 VND'"></h3>
+                <h3 id="productPrice" class="font-weight-semi-bold mb-4" th:text="${product.getPrice()} + '.000 VND'"></h3>
                 <p id="productDescription" class="mb-4" th:text="${product.getDescription()}"></p>
                 <div class="d-flex mb-4">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>

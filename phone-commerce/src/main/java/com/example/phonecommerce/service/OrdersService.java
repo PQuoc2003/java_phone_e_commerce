@@ -1,16 +1,16 @@
 package com.example.phonecommerce.service;
 
-import com.example.phonecommerce.models.Order;
+import com.example.phonecommerce.models.Orders;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public interface OrderService {
+public interface OrdersService {
 
-    List<Order> getAllOrder();
+    List<Orders> getAllOrder();
 
-    void addOrder(Order order);
+    void addOrder(Orders order);
 
     void deleteById(Long id);
 

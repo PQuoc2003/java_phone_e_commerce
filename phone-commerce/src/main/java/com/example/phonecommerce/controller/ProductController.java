@@ -1,6 +1,7 @@
 package com.example.phonecommerce.controller;
 
 
+import com.example.phonecommerce.dto.ProductDTO;
 import com.example.phonecommerce.models.Brand;
 import com.example.phonecommerce.models.Category;
 import com.example.phonecommerce.models.Colors;
@@ -151,7 +152,11 @@ public class ProductController {
 
         if (product == null) return "redirect:/admin/product";
 
-        model.addAttribute("product", product);
+        ProductDTO productDTO = new ProductDTO();
+
+        productDTO.convertToDTO(product);
+
+        model.addAttribute("product", productDTO);
 
         return "admin_template/admin_product-details";
     }
