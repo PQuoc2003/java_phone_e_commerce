@@ -1,4 +1,4 @@
-package com.example.phonecommerce.Configuration;
+package com.example.phonecommerce.config;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

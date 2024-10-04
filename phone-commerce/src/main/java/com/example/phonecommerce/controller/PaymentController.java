@@ -1,7 +1,7 @@
 package com.example.phonecommerce.controller;
 
 
-import com.example.phonecommerce.Configuration.PaymentConfig;
+import com.example.phonecommerce.config.PaymentConfig;
 import com.example.phonecommerce.dto.OrdersDTO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
